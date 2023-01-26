@@ -1,5 +1,4 @@
 from rest_framework import generics, mixins
-
 from .serializers import OrderSerializer
 from .models import Order
 
