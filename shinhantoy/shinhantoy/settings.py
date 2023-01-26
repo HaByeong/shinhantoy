@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'order',
-    'member.apps.MemberConfig'
+    'member',
 ]
 
 MIDDLEWARE = [
