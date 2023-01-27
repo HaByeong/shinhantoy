@@ -1,4 +1,5 @@
 from rest_framework import generics, mixins
+
 from .serializers import OrderSerializer, CommentSerializer, CommentCreateSerializer
 from .models import Order, Comment
 
@@ -29,6 +30,7 @@ class OrderDetailView(
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, args, kwargs)
 
+
 class CommentListView(
     mixins.ListModelMixin,
     generics.GenericAPIView
@@ -36,8 +38,9 @@ class CommentListView(
     serializer_class = CommentSerializer
 
     def get_queryset(self):
-        ord_no = self.kwargs.get('ord_no')
-        return Order.objects.filter(ord_no=ord_no)
+        order_id = self.kwargs.get('order_id')
+        if order_id:
+            return Comment.objects.filter(order_id=order_id)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, args, kwargs)
@@ -48,9 +51,6 @@ class CommentCreateView(
     generics.GenericAPIView
 ):
     serializer_class = CommentCreateSerializer
-
-    def get_queryset(self):
-        return Comment.objects.all()
 
     def post(self, request, *args, **kwargs):
         return self.create(request, args, kwargs)

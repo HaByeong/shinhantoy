@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import Member, 
+from .models import Member
 class MemberSerializer(serializers.ModelSerializer):
     def validate_password(self, value):
         if len(value)<8:
