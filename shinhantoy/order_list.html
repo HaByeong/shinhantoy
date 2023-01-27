@@ -27,8 +27,12 @@
                             </li>`)
                         );
                     }
+                    let total_page = Math.ceil(result.count / 10)
+                    console.log(total_page)
+
                 });
         });
+
         function go_page(page){
             const search = new URLSearchParams(location.search);
             const pk = search.get('pk');
